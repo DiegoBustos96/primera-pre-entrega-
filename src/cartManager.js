@@ -28,13 +28,26 @@ class cartManager {
   }
 
   addProductToCart(cartId, productId) {
-    const cartIndex = this.carts.findIndex(element => element.id == cartId);
+    function findCartIndex(cartId){
+      const index = this.carts.findIndex(element => element.id == cartId);
+      if(index === -1){
+        return null;
+      }
+      return index;
 
-    if (cartIndex === -1) {
+    }
+    const cartIndex = findCartIndex(cartId);
+    if(cartIndex === null){
       return "Carrito no existe";
     }
-
     const cart = this.carts[cartIndex];
+    // const cartIndex = this.carts.findIndex(element => element.id == cartId);
+
+    // if (cartIndex === -1) {
+    //   return "Carrito no existe";
+    // }
+
+    // const cart = this.carts[cartIndex];
     const productIndex = cart.products.findIndex(element => element.product == productId);
 
     if (productIndex === -1) {
